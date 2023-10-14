@@ -24,6 +24,9 @@ class _HomePageState extends State<HomePage> {
     'assets/grill6.jpg',
     'assets/Chicken.jpg',
   ];
+  String deliveryTime = '35-40 minutes';
+  List<FoodItem> foodList = [];
+  List<FoodItem> orderedFoodItems = [];
   int _currentIndex = 0; // To keep track of the current image index
   final CarouselController _carouselController = CarouselController();
 
@@ -307,7 +310,9 @@ class _HomePageState extends State<HomePage> {
             icon: GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DeliveryPage()));
+                    MaterialPageRoute(builder: (context) => DeliveryPage(
+                      orderedFoodItems:orderedFoodItems,deliveryTime:deliveryTime, orderedFooditems: [],
+                    )));
               },
               child: Image.asset(
                 'assets/motorbike.png',

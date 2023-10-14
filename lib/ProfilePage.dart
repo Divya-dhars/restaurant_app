@@ -17,7 +17,9 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _phoneController = TextEditingController();
   late User? user;
   int _selectedIndex = 0;
-
+  String deliveryTime = '35-40 minutes';
+  List<FoodItem> foodList = [];
+  List<FoodItem> orderedFoodItems = [];
   @override
   void initState() {
     super.initState();
@@ -169,7 +171,9 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DeliveryPage()));
+                    MaterialPageRoute(builder: (context) => DeliveryPage(
+                      orderedFoodItems:orderedFoodItems,deliveryTime:deliveryTime, orderedFooditems: [],
+                    )));
               },
               child: Image.asset(
                 'assets/motorbike.png',

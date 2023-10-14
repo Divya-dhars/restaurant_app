@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaraunt_app/DeliveryPage.dart';
+import 'package:restaraunt_app/FoodPage.dart';
 import 'package:restaraunt_app/ProfilePage.dart';
 import 'package:restaraunt_app/upi.dart';
 import 'package:upi_india/upi_india.dart';
@@ -25,24 +27,26 @@ class _PaymentPageState extends State<PaymentPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Confirm Delivery Address",
-               style:TextStyle(
-                 fontFamily:'Quicksand',
-                 fontWeight: FontWeight.bold,
+              title: Text(
+                "Confirm Delivery Address",
+                style: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               content: Text(
-                  "Your order will be delivered to your adrress.Do you want to change it?",
-                   style:TextStyle(
-                   fontFamily:'Quicksand',
-                   fontWeight: FontWeight.bold,
-                  ),
-                  ),
+                "Your order will be delivered to your adrress.Do you want to change it?",
+                style: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               actions: [
                 TextButton(
-                  child: Text("Change Address",
-                    style:TextStyle(
-                      fontFamily:'Quicksand',
+                  child: Text(
+                    "Change Address",
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -52,11 +56,12 @@ class _PaymentPageState extends State<PaymentPage> {
                   },
                 ),
                 TextButton(
-                    child: Text("Confirm Address",
-                     style:TextStyle(
-                      fontFamily:'Quicksand',
-                      fontWeight: FontWeight.bold,
-                    ),
+                    child: Text(
+                      "Confirm Address",
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     onPressed: () {
                       placeOrder();
@@ -67,43 +72,49 @@ class _PaymentPageState extends State<PaymentPage> {
           });
     }
   }
-  
+
+  List<FoodItem> foodList = [];
   void placeOrder() {
-  // Perform order placement logic, e.g., sending the order to the server
-  // Show a success message to the user
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Order Placed Successfully",
-        style:TextStyle(
-          fontFamily:'Quicksand',
-          fontWeight: FontWeight.bold,
-        ),
-        ),
-        content: Text("Your order will be delivered within 35-40 minutes.",
-         style:TextStyle(
-          fontFamily:'Quicksand',
-          fontWeight: FontWeight.bold,
-        ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text("OK",
-             style:TextStyle(
-          fontFamily:'Quicksand',
-          fontWeight: FontWeight.bold,
-        ),
+    // Perform order placement logic, e.g., sending the order to the server
+    // Show a success message to the user
+    List<FoodItem> orderedFoodItems =
+        foodList.where((item) => item.quantity > 0).toList();
+    String deliveryTime = '35-40 minutes';
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Order Placed Successfully",
+            style: TextStyle(
+              fontFamily: 'Quicksand',
+              fontWeight: FontWeight.bold,
             ),
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the success message dialog
-            },
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                "OK",
+                style: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DeliveryPage(
+                          orderedFoodItems: orderedFoodItems,
+                          deliveryTime: deliveryTime, orderedFooditems: [],)),
+                ); // Close the success message dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

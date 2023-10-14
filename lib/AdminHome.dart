@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:restaraunt_app/DeliveryPage.dart';
@@ -337,4 +337,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
+}*/

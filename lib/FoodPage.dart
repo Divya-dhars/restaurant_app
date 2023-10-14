@@ -1,14 +1,13 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:restaraunt_app/AdminHome.dart';
 import 'package:restaraunt_app/CartPage.dart';
 import 'package:restaraunt_app/DeliveryPage.dart';
 import 'package:restaraunt_app/ProfilePage.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:restaraunt_app/home.dart';
+
 
 class FoodItem {
   final String id;
@@ -48,6 +47,9 @@ class _FoodPageState extends State<FoodPage> {
   int _currentIndex = 0;
   int cartItemCount = 0;
   double totOrderPrice = 0.0;
+  String deliveryTime = '35-40 minutes';
+  List<FoodItem> foodList = [];
+  List<FoodItem> orderedFoodItems = [];
 
   final CarouselController _carouselController = CarouselController();
   final List<String> imageList = [
@@ -57,7 +59,6 @@ class _FoodPageState extends State<FoodPage> {
     'assets/Chicken.jpg',
   ];
 
-  List<FoodItem> foodList = [];
   List<String> imageLists = [
     'assets/login19.jpeg',
     'assets/salad.png',
@@ -66,8 +67,8 @@ class _FoodPageState extends State<FoodPage> {
     'assets/fastdelivery.png',
     'assets/food-delivery.png',
     'assets/food-tray.png',
-     'assets/menu.png',
-     'assets/Menuorder.png',
+    'assets/menu.png',
+    'assets/Menuorder.png',
     'assets/motorbike.png',
     'assets/tray.png',
     'assets/bg.jpg',
@@ -89,7 +90,6 @@ class _FoodPageState extends State<FoodPage> {
     'assets/menuf.jpg',
     'assets/menuf1.jpg',
     'assets/menuf3.jpg',
-  
   ];
   void _onItemTapped(int index) {
     if (_selectedIndex != index) {
@@ -168,7 +168,7 @@ class _FoodPageState extends State<FoodPage> {
             (assestPath) => assestPath == imagePath,
             orElse:()=>'assets/res3.jpg',
           );*/
-          
+
           return FoodItem(
             id: document.id,
             name: data['name'],
@@ -209,39 +209,39 @@ class _FoodPageState extends State<FoodPage> {
             fontWeight: FontWeight.w900,
           ),
         ),
-         actions: [
-            Stack(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CartPage(
-                            foodList: foodList, totOrderPrice: totOrderPrice),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.shopping_cart, color: Colors.black),
-                ),
-                if (cartItemCount > 0)
-                  Positioned(
-                    right: 0,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      radius: 10,
-                      child: Text(
-                        cartItemCount.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartPage(
+                          foodList: foodList, totOrderPrice: totOrderPrice),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.shopping_cart, color: Colors.black),
+              ),
+              if (cartItemCount > 0)
+                Positioned(
+                  right: 0,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 10,
+                    child: Text(
+                      cartItemCount.toString(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -336,17 +336,23 @@ class _FoodPageState extends State<FoodPage> {
                       final ratingColor = isGreenCard
                           ? Colors.orange
                           : Color.fromARGB(255, 10, 88, 12);
-                      return Card(
-                        elevation: 12.0,
+                      return Padding(
+                        padding:EdgeInsets.only(bottom:16.0),
+                      child:Container(
+                        width:120.0,
+                        height:110.0,
+                      child:Card(
+                        elevation: 20.0,
                         margin: EdgeInsets.symmetric(
                             vertical: 6.0, horizontal: 16.0),
                         color: isGreenCard ? Colors.white : Color(0xFF5212BF6B),
                         child: ListTile(
-                          contentPadding: EdgeInsets.only(right:12.0,left:12.0,top:5.0,bottom:8.0),
+                          contentPadding: EdgeInsets.only(
+                              right: 12.0, left: 12.0, top: 5.0, bottom: 8.0),
                           leading: Image.asset(
                             foodItem.imagePath,
                             width: 80.0,
-                            height: 150.0,
+                            height: 100.0,
                             //fit: BoxFit.cover,
                           ),
                           title: Text(
@@ -426,6 +432,8 @@ class _FoodPageState extends State<FoodPage> {
                             // Add your onTap logic here
                           },
                         ),
+                      ),
+                      ),
                       );
                     },
                   ),
@@ -482,7 +490,10 @@ class _FoodPageState extends State<FoodPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DeliveryPage()),
+                  MaterialPageRoute(
+                      builder: (context) => DeliveryPage(
+                          orderedFooditems: orderedFoodItems,
+                          deliveryTime: deliveryTime, orderedFoodItems: [],)),
                 );
               },
               child: Image.asset(

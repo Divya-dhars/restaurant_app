@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         RegisterApp.id: (context) => RegisterApp(),
         HomePage.id: (context) => HomePage(),
         FoodPage.id:(context)=>FoodPage(),
-        DeliveryPage.id:(context)=>DeliveryPage(),
+        //DeliveryPage.id:(context)=>DeliveryPage(),
         ProfilePage.id:(context)=>ProfilePage(),
       },
       debugShowCheckedModeBanner: false,
