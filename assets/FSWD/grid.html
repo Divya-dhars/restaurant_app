@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .header {
+                grid-area:header;
+                grid-column: 2/ span 3;
+                display: flex;
+                padding:0;
+                margin-top:-20px;
+                margin-left: -10px;
+                font-family: Segoe UI Variable Text Light;
+                font-size:50px;
+            }
+            .container{
+                display: grid;
+                grid-template-areas:'header header header header header header';
+                background-color:black;
+                padding: 8px;
+                height:60px;
+            }
+            .container > div {
+               padding: 10px 0;
+               color:white; 
+                
+            }
+            .item {
+                grid-area:header;
+                grid-column: 8/ end ;
+                grid-template-columns: auto 1fr; 
+                align-items: center;
+                display:flex;
+                margin-left: 500px;
+            }
+            nav ul {
+             display: flex;
+             list-style-type: none;
+             padding:6px;
+             margin-top:12px;
+             justify-content:space-between;
+             align-items: center; 
+             font-family: Segoe UI Variable Text Light;
+             font-size:15px;
+            }
+
+            nav ul li {
+               display: inline;
+            }
+
+            nav ul li a {
+            text-decoration: none;
+            color: white;
+            margin: 0 4px;
+           }
+          .active {
+                 color: blue;
+            }
+            .sym{
+                color:white;
+                padding:3px;
+            }
+           nav ul li a:hover {
+                 color: blue;
+            }
+            .content {
+                display :grid;
+                padding:10px;
+                margin-left: 40px;
+
+            }    
+            .grid-item {
+                font-family: Segoe UI Variable Text Light;
+                color:black;
+                font-size:20px;
+                margin-top: 10px;
+                padding:0;
+                width: 100%;
+
+            }
+            .grid1{
+                padding:0;
+            }
+            .grid2{
+                padding:0;
+            }
+            .grid1::after{
+                content: "";
+                display: block;
+                border-bottom: 1px dotted;
+                margin-top: 5px;
+                padding:10px;
+                }
+            .grid2::after{
+                content: "";
+                display: block;
+                border-bottom: 1px dotted;
+                margin-top: 5px;
+                padding:10px;
+            }
+            .grid-c{
+                font-family:Arial Black;
+                font-size:40px;
+            }
+            .grid-con{
+                color:grey;
+                font-family: Segoe UI Variable Text Light;
+                font-size:40px;
+
+            }   
+            .blue{
+                color: #00bfff;
+            }
+            .first{
+                font-family:Arial Black;
+            }
+            .big{
+                font-family:Arial Black;
+            }
+            .box {
+                display: grid;
+                grid-template-columns: auto auto auto;
+                gap: 35px;
+                padding:20px;
+                margin-left:-12px;
+            }
+            .box1{
+                background-color: #0fc0fc;
+                padding: 10px;
+                text-align: center;
+                height:450px;
+                width:400px;
+            }
+            .boxC{
+                font-family: Segoe UI Variable Text Light;
+                color:white;
+                font-size:35px;
+            }
+            .boxC::after{
+                content: "";
+                display: block;
+                border-bottom: 1px solid white;
+                margin-top: 5px;
+                margin-left:50px;
+                margin-right:50px;
+                padding:10px;
+            }
+            .boxP{
+                font-family:Segoe UI Variable Text Light;
+                font-size: 20px;
+                color:white;
+                padding:10px;
+                margin-left:50px;
+                margin-right:50px;
+            }
+            .boxB{
+                padding: 30px;
+            }
+            .button{
+                background-color: #006994;
+                border-radius: 2px solid black;
+                text-align:center;
+                font-size:20px;
+                font-family:calibri;
+                color:white;
+                padding:10px;
+            }
+            .info {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                grid-gap:10px;   
+            }
+            .Client{
+                font-family: Segoe UI Variable Text Light;
+                font-size: 20px;
+            }
+            .dot{
+                border-left: 1px dotted #000;
+                height: 94%;
+                margin-left:-35px;
+            }
+            
+            .project{
+                margin-left:20px;
+                font-family:Segoe UI Variable Text Light;
+                font-size:20px;
+            }
+            .Clienti{
+                display:grid;
+                grid-template-columns: 1fr 2fr;
+            }
+            .about{
+                padding:8px;
+            }
+            .Clientd{
+                font-size:15px;
+                font-family: Segoe UI Variable Text;
+                padding-bottom:-500px;
+                line-height:0.6;
+            }
+            .b{
+                display: grid;
+                grid-template-columns:repeat(3,auto,1fr);
+             }
+             .des{
+               grid-area:des;
+             }
+             .PItems {
+                grid-column: 5/ end ;
+                grid-template-columns:  1fr; 
+                align-items: center;
+                display:flex;
+                margin-left: 300px;
+            }
+             .proB{   
+                width:600px;
+                height: 280px;
+                border:1px solid grey;
+                border-radius:2px;
+                box-shadow: 10px;
+                margin-top:10px;
+                padding:30px;
+                
+             }
+
+            .proB nav ul {
+             display: flex;
+             list-style-type: none;
+             padding:6px;
+             margin-top:-50px;
+             justify-content:space-between;
+             align-items: center; 
+             font-family: Segoe UI Variable Text Light;
+             font-size:10px;
+            }
+
+            .proB nav ul li {
+               display: inline;
+            }
+
+            .proB nav ul li a {
+            text-decoration: none;
+            color: black;
+            margin: 0 4px;
+           }
+           .foo nav ul {
+             display: flex;
+             list-style-type: none;
+             padding:9px;
+             margin-top:-50px;
+             justify-content:space-between;
+             align-items: center; 
+             font-family: Segoe UI Variable Text Light;
+             font-size:10px;
+            }
+            .foo nav ul li {
+               display: inline;
+            }
+            .foo nav ul li a {
+            text-decoration: none;
+            color: black;
+            margin: 0 80px;
+           }
+           
+           .ProPro{
+               display:grid;
+               grid-template-columns: 1fr 1fr;
+               background:linear-gradient(to right, #E8D6AF, #C4A486);
+               margin-left:-30px;
+               height:180px; 
+               margin-right:-30px;
+               padding-top:0%;
+               
+           }
+           .ProPra{
+             font-size:10px;
+             margin-left:10px;
+             padding:2px;
+             color:white;
+           }
+           .ProC img{
+              margin-left:340px;
+              padding-bottom:350px;
+              height:120px;
+              margin-top:-150px;
+              width:250px;
+
+           }
+             .footer{
+                padding:2px;
+                color:grey;
+                font-size:20px;
+                font-family: Segoe UI Variable Text Light;
+                margin-left:20px;
+                margin-top: 0px;
+            }
+             .proBlog{
+                padding:20px;
+                font-size:15px;
+                margin-left:-20px;
+                font-family:Segoe UI Variable Text;
+                line-height: 1.5;
+             }
+             </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">Design Studios</div>
+            <div class="item">
+               <nav>
+                  <ul>
+                    <li><a class="active" href="#">Home <span class="sym">~</span></a></li>
+                    <li><a href="#">About Us<span class="sym">~</span></a></li> 
+                    <li><a href="#">Services<span class="sym">~</span></a></li>
+                    <li><a href="#">Portfolio<span class="sym">~</span></a></li>
+                    <li><a href="#">Contact Us</a></li>
+                  </ul>
+               </nav>
+            </div>
+        </div>
+        <div class="content">
+            <div class="grid-content">
+                <div class="grid1">
+                    <div class="grid-c">Clean <span class="blue">&</span> Professional Web Design</div>
+                    <div class="grid-con">Providing High Quality Web Solutions</div>
+                </div>
+                <div class="grid2">
+                    <div class="grid-item"><b>We provide<span class="first">first class</span> web solutions for organizations and small businesses looking to make a <span class= "big"> big impact</span> online.Our services include web design, online marketing campaigns, and search engine optimization.We provide web design solutions of the very highest order.we'll work with you form the strat to understand your exact requirements and will continuosly work with you to ensure that you're happy with final site that you purchase.</b></div>
+                <div>    
+            </div>
+        </div>
+        <div class="box">
+            <div class="box1">
+                <div class="boxC">Web design</div>
+                <div class="boxP"><b>We provide web design solutions of the very highest order.we'll work with you form the strat to understand your exact requirements and will continuosly work with you to ensure that you're happy with final site that you purchase.</b></div>
+                <div class="boxB">
+                    <div class="button">GET MORE DETAILS >></div>
+                </div>
+            </div>
+            <div class="box1">
+                <div class="boxC">marketing</div>
+                <div class="boxP"><b>We can help you promote you business in both the online and offline worlds.We specialize in a range of fields from viral marketing campaigns to managing paid advertising accounts for you.Your brand will be in safe hands with us.</b></div>
+                <div class="boxB">
+                    <div class="button">VIEW CASE STUDIES >></div>
+                </div>
+            </div>
+            <div class="box1">
+                <div class="boxC">optimization</div>
+                <div class="boxP"><b>Want to drive more traffic to your site?.You've come the right place!We can increase traffic to your site in an organic and effective manner that will ensure more people are aware of your business and the products,services you offer.</b></div>
+                <div class="boxB">
+                    <div class="button">LERAN MORE >></div>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="Client"><b>Client Testimonials</b>
+            <div class="Clienti">
+                <div class="about"> 
+                    <img style="height:175px;width:170px;" src="grid1.jpg"></img><br><br>
+                    <img style="height:165px;width:170px;" src="people3.jpg"></img><br><br>
+                    <img style="height:165px;width:170px;" src="people2.jpg"></img><br><br>
+               </div>
+               <div class="Clientd">
+                  <p>"Design Studios  created a beautiful website and were</p><br<p>a pleasure to work with during the whole process.."</p><br><br><b>Sarah Johnson</b><br><p style="color:#00bfff;"><b>Web Design Media</b></p><br><br><br><br><br><br><br><br>
+                  <p>"i only have good things to say about Design Studios-</p><p>I highly recommend them for promotional work.."</p><br><b>Kate Saundres</b><p style="color:#00bfff;"><b>Software solutions</b></p><br><br><br><br><br><br><br><br><br>
+                  <p>"Design Studios have increased traffic to my site by</p><p>over 200% in just a few months-great work guys!"</p><br><b>Dave Cole</b><p style="color:#00bfff;"><b>Global Web Services</b></p>
+               </div>
+            </div>
+            </div>
+            <div class="dot"></div>
+            <div class="project"><b>Featured Projects</b><br><br>Yoshi Online Marketing Compaign
+            <div class="proB"><p style="margin-top:2px;font-size:25px;"><b>YOSHI THEME</b></p>
+                <div class="PItems">
+                    <nav>
+                        <ul>
+                          <li><a href="#">Home<span class="sym">~</span></a></li>
+                          <li><a href="#">About Us<span class="sym">~</span></a></li> 
+                          <li><a href="#">Services<span class="sym">~</span></a></li>
+                          <li><a href="#">Portfolio<span class="sym">~</span></a></li>
+                          <li><a href="#">Contact Us</a></li>
+                        </ul>
+                     </nav>
+                </div>
+            <div class="ProPro">
+                <div class="ProPra">
+                    <p style="font-size:18px;">Dong Business Thot Matterns</p><p>We provide web design solutions of the very highest order.we'll work with you form the strat to understand your exact requirements.We provide web design solutions of the very highest order.we'll work with you form the strat to understand your exact requirements and will continuosly work with you to ensure that you're happywith final site that you purchase.</div>
+                    </p><br>
+                </div>
+                <div class="ProC">
+                    <img src="people.jpg"></img>
+                </div>
+            </div>
+                <div class="foo">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">From the blog</a></li>
+                        </ul>
+                    </nav>    
+                </div>
+                <div class="proBlog">
+                    This is involved organising an online marketing campaign to help promise the yoshi brand.The result<br> of this campaign resulted in a 200% increase in Yoshi sales over a six month period of time.This is<br> involved organising an online marketing campaign to help promise the yoshi brand.<br><p style="color:#00bfff;padding:0%;"><b>Click Here For More Details>></b></p></div>
+            </div>
+        </div>
+        <div class="footer">
+            <footer>
+             <p>Copyright &copy; 2010-Design Studios-All Rights Reserved</p>
+            </footer> 
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "763617243244",
+    "project_id": "mad-flutter-project",
+    "storage_bucket": "mad-flutter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763617243244:android:350117a6fa16bad06ba849",
+        "android_client_info": {
+          "package_name": "com.example.restaraunt_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDysE4xQNkgGhFnPIVyiO8N65hPOX87otM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

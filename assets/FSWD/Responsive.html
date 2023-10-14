@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image:url('baimg1.jpg');
+            background-repeat: repeat;
+            padding: 5px;
+        }
+        nav {
+            width: 100%;
+            height: 100%;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            padding: 18px 28px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #2F4F4F;
+        }
+        .active {
+            background-color: #2F4F4F;
+        }
+        .container {
+            display: flex;
+            padding:10px;
+        }
+        .food {
+            flex-direction: row;
+            padding-left: 40px;
+        }
+        .food1 {
+            flex-direction: row;
+            align-content: flex-start;
+            padding-left: 260px;
+        }
+        .food2 {
+            flex-direction: row;
+            align-content: flex-end;
+            padding-left: 220px;
+        }
+        img {
+            width: 300px;
+            height: 300px;
+            border: 2px solid grey;
+            padding:5px;
+        }
+        img:hover {
+            border: 2px solid #000;
+            border-radius: 20px;
+        }
+        .Header {
+            text-align: center;
+            font-size: 50px;
+            color: #3267a8;
+            font-family: "Segoe UI Variable Text Light";
+        }
+        footer {
+            padding: 2px;
+            color: black;
+            font-size: 30px;
+            font-family: "Segoe UI Variable Text Light";
+            margin-left: 20px;
+            margin-top: 0px;
+            text-align: center;
+        }
+        @media only screen and (max-width: 800px) {
+            
+            img {
+                width: 50%;
+                height: 50%;
+            }
+            .container,.food,.food1,.food2 {
+                flex-direction: column;
+                align-content:flex-start;
+                padding-left:40px;
+                width:100%;
+
+            }
+        }
+        .Header{
+        
+            margin-top: 2px;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        h4{
+             color:black;
+             font-family:Segoe UI Variable Text Light;
+             font-size:25px;
+        }
+        h4:hover{
+            color: #a83232;
+        }
+    </style>
+</head>
+<body class="background">
+    <div class="Header">
+        <header>
+            <b>DD Food Park</b>
+        </header>
+    </div>    
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a class="active" href="#">Menu</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About Us</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="food">
+        <img src="Paneert.jpg" tabIndex="0">
+        <h4>Paneer tikka - A perfect balance of spices.</h4>
+        <img src="Panneer.jpg">
+        <h4>Paneer is the answer for vegetarians.</h4>
+        <img src="grill3.jpg">
+        <h4>So many spices, so little time. Happy grilling!</h4>
+        <img src="grill4.jpg">
+        <h4>So many spices, so little time. Happy grilling!</h4>
+    </div>
+    <div class="food1">
+        <img src="grill1.jpg">
+        <h4>I love the smell of food cooking in the kitchen.</h4>
+        <img src="Mimg7.jpg">
+        <h4>A ready-to-eat slice of heaven.</h4>
+        <img src="Naan.jpg">
+        <h4>Naan is not just bread, it's a way of life.</h4>
+        <img src="grill5.jpg">
+        <h4>So many spices, so little time. Happy grilling!</h4>
+    </div>
+    <div class="food2">
+        <img src="chickent.jpg">
+        <h4>When in doubt, always have fried chicken.</h4>
+        <img src="Barbeque.jpg">
+        <h4>Barbecue: It's not just a meal, it's a ritual.</h4>
+        <img src="Chicken.jpg">
+        <h4>Break the ice with fried chicken!</h4>
+        <img src="grill6.jpg">
+        <h4>So many spices, so little time. Happy grilling!</h4>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2010-Design Studios-All Rights Reserved</p>
+</footer>
+</body>
+</html>
