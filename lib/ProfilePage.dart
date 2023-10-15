@@ -17,9 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _phoneController = TextEditingController();
   late User? user;
   int _selectedIndex = 0;
-  String deliveryTime = '35-40 minutes';
-  List<FoodItem> foodList = [];
-  List<FoodItem> orderedFoodItems = [];
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +53,17 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {
         _selectedIndex = index;
       });
+      if(index==2){
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DeliveryPage(
+            foodList: [], // Pass your foodList here
+            totOrderPrice: 0.0, // Pass your total order price here
+          ),
+        ),
+      );
+      }
     }
   }
 
@@ -146,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-               Navigator.push(context,
+                Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
               },
               child: Icon(Icons.home, size: 26),
@@ -170,10 +179,12 @@ class _ProfilePageState extends State<ProfilePage> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DeliveryPage(
-                      orderedFoodItems:orderedFoodItems,deliveryTime:deliveryTime, orderedFooditems: [],
-                    )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DeliveryPage(foodList:[],totOrderPrice:0.0),
+                        )
+                    );
               },
               child: Image.asset(
                 'assets/motorbike.png',

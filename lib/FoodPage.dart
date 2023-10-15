@@ -49,7 +49,7 @@ class _FoodPageState extends State<FoodPage> {
   double totOrderPrice = 0.0;
   String deliveryTime = '35-40 minutes';
   List<FoodItem> foodList = [];
-  List<FoodItem> orderedFoodItems = [];
+
 
   final CarouselController _carouselController = CarouselController();
   final List<String> imageList = [
@@ -491,9 +491,8 @@ class _FoodPageState extends State<FoodPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DeliveryPage(
-                          orderedFooditems: orderedFoodItems,
-                          deliveryTime: deliveryTime, orderedFoodItems: [],)),
+                      builder: (context) => DeliveryPage(foodList:[],totOrderPrice:0.0),
+                  ),
                 );
               },
               child: Image.asset(

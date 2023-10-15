@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:restaraunt_app/DeliveryPage.dart';
 import 'package:restaraunt_app/FoodPage.dart';
@@ -7,6 +8,10 @@ import 'package:upi_india/upi_india.dart';
 
 class PaymentPage extends StatefulWidget {
   static String id = "Payment_screen";
+  final List<FoodItem> foodList;
+  final double totOrderPrice;
+  PaymentPage({required this.foodList, required this.totOrderPrice});
+
   @override
   _PaymentPageState createState() => _PaymentPageState();
 }
@@ -14,6 +19,7 @@ class PaymentPage extends StatefulWidget {
 class _PaymentPageState extends State<PaymentPage> {
   final double order = 1;
   String selectedPaymentMethod = 'Cash on Delivery(COD)';
+
   void handlePayment(String selectedMethod) {
     if (selectedMethod == 'UPI') {
       Navigator.push(
@@ -73,13 +79,11 @@ class _PaymentPageState extends State<PaymentPage> {
     }
   }
 
-  List<FoodItem> foodList = [];
   void placeOrder() {
-    // Perform order placement logic, e.g., sending the order to the server
-    // Show a success message to the user
-    List<FoodItem> orderedFoodItems =
-        foodList.where((item) => item.quantity > 0).toList();
-    String deliveryTime = '35-40 minutes';
+    double totOrderPrice=0.0;
+    for (var foodItem in widget.foodList) {
+    totOrderPrice += (foodItem.price * foodItem.quantity);
+  }
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -100,14 +104,14 @@ class _PaymentPageState extends State<PaymentPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => DeliveryPage(
-                          orderedFoodItems: orderedFoodItems,
-                          deliveryTime: deliveryTime, orderedFooditems: [],)),
-                ); // Close the success message dialog
+                          foodList: widget.foodList,
+                          totOrderPrice: totOrderPrice)),
+                );
               },
             ),
           ],
@@ -202,7 +206,6 @@ class _PaymentPageState extends State<PaymentPage> {
           SizedBox(height: 25.0),
           ElevatedButton(
               onPressed: () {
-                // Implement payment processing based on the selected method
                 handlePayment(selectedPaymentMethod);
               },
               child: Text('Proceed to Pay',
