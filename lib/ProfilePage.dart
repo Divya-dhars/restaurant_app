@@ -29,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
     if (user != null) {
       final userDoc = await FirebaseFirestore.instance
           .collection('user_profiles')
-          .doc(user!.uid)
+          .doc(user!.email)
           .get();
       if (userDoc.exists) {
         final userData = userDoc.data() as Map<String, dynamic>;
@@ -59,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
         MaterialPageRoute(
           builder: (context) => DeliveryPage(
             foodList: [], // Pass your foodList here
-            totOrderPrice: 0.0, // Pass your total order price here
+            totOrderPrice: 0.0,  // Pass your total order price here
           ),
         ),
       );
@@ -246,7 +246,7 @@ class ProfileInformation extends StatelessWidget {
                     // Save the profile details to Firestore here
                     await FirebaseFirestore.instance
                         .collection('user_profiles')
-                        .doc(user?.uid)
+                        .doc(user?.email)
                         .set({
                       'name': nameController.text,
                       'address': addressController.text,

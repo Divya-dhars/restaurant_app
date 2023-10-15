@@ -89,7 +89,7 @@ class _PaymentPageState extends State<PaymentPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            "Order Placed Successfully",
+            "Make Order",
             style: TextStyle(
               fontFamily: 'Quicksand',
               fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:restaraunt_app/FoodPage.dart';// Assuming FoodItem is a custom class.
+import 'package:restaraunt_app/FoodPage.dart';
+import 'package:restaraunt_app/AdminCartPage.dart';// Assuming FoodItem is a custom class.
 
 class AdminPanel extends StatefulWidget {
   static String id = "adminpanel_screen";
@@ -34,6 +35,23 @@ class _AdminPanelState extends State<AdminPanel> {
             fontWeight: FontWeight.w900,
           ),
         ),
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdminCartPage(),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.shopping_cart, color: Colors.black),
+              ),
+            ],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Card(

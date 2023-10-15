@@ -491,7 +491,7 @@ class _FoodPageState extends State<FoodPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DeliveryPage(foodList:[],totOrderPrice:0.0),
+                      builder: (context) => DeliveryPage(foodList: foodList, totOrderPrice: totOrderPrice),
                   ),
                 );
               },
