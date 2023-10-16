@@ -23,7 +23,7 @@ class AdminCartPage extends StatelessWidget {
           ),
         ),
       ),
-      body: OrderList(), // Display the order list
+      body: OrderList(),
     );
   }
 }
