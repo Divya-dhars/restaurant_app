@@ -57,10 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DeliveryPage(
-            foodList: [], // Pass your foodList here
-            totOrderPrice: 0.0,  // Pass your total order price here
-          ),
+          builder: (context) => DeliveryPage(),
         ),
       );
       }
@@ -182,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DeliveryPage(foodList:[],totOrderPrice:0.0),
+                        builder: (context) => DeliveryPage(),
                         )
                     );
               },

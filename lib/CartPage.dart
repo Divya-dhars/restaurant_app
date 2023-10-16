@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:restaraunt_app/FoodPage.dart';
 import 'package:restaraunt_app/PaymentPage.dart';
@@ -7,21 +8,39 @@ class CartPage extends StatelessWidget {
   final List<FoodItem> foodList;
   final double totOrderPrice;
   CartPage({required this.foodList, required this.totOrderPrice});
-
+  late User? user;
   Future<void> addOrderedFoodItemsToFirebase(List<FoodItem> foodList) async {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final CollectionReference orderCollection =
-        FirebaseFirestore.instance.collection('orders');
-    for (FoodItem foodItem in foodList) {
-      if (foodItem.quantity > 0) {
-        await orderCollection.add({
-          'name': foodItem.name,
-          'quantity': foodItem.quantity,
-          'price': foodItem.price,
-        });
-      }
+  user = FirebaseAuth.instance.currentUser;
+  if (user == null) {
+    return;
+  }
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final CollectionReference orderCollection = firestore.collection('orders');
+  final CollectionReference userProfileCollection = firestore.collection('user_profiles');
+  final userDoc = await userProfileCollection.doc(user!.email).get();
+  if (!userDoc.exists) {
+    return;
+  }
+  final userData = userDoc.data() as Map<String, dynamic>;
+  final String username = userData['name'];
+  final String mobileNumber = userData['phoneNumber'];
+  final String address = userData['address'];
+
+  for (FoodItem foodItem in foodList) {
+    if (foodItem.quantity > 0) {
+      await orderCollection.add({
+        'userEmail': user!.email,
+        'username': username,
+        'mobileNumber': mobileNumber,
+        'address': address,
+        'name': foodItem.name,
+        'quantity': foodItem.quantity,
+        'price': foodItem.quantity*foodItem.price,
+      });
     }
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

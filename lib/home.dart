@@ -310,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DeliveryPage(foodList:[],totOrderPrice:0.0)));
+                        builder: (context) => DeliveryPage()));
               },
               child: Image.asset(
                 'assets/motorbike.png',
